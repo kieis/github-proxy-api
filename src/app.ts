@@ -2,7 +2,7 @@ import "dotenv/config";
 import fastify from "fastify";
 import cors from "@fastify/cors";
 import proxy from "@fastify/http-proxy";
-import { replyStreamData } from "./utils";
+import { replyStreamData, rewriteHeaders } from "./utils";
 
 const server = fastify();
 server.register(cors, {
@@ -28,6 +28,7 @@ server.register(proxy, {
 
       replyStreamData(request, reply, res, { nextPage });
     },
+    rewriteRequestHeaders: rewriteHeaders,
   },
 });
 
@@ -40,6 +41,7 @@ server.register(proxy, {
     onResponse: (request, reply, res) => {
       replyStreamData(request, reply, res);
     },
+    rewriteRequestHeaders: rewriteHeaders,
   },
 });
 
@@ -52,6 +54,7 @@ server.register(proxy, {
     onResponse: (request, reply, res) => {
       replyStreamData(request, reply, res);
     },
+    rewriteRequestHeaders: rewriteHeaders,
   },
 });
 
