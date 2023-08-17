@@ -6,7 +6,7 @@
   "author": "Dirlan Ferreira",
   "scripts": {
     "build": "tsc",
-    "start": "node ./bin/app.js",
+    "start": "tsc && node ./bin/app.js",
     "dev": "nodemon ./src/app.ts"
   },
   "dependencies": {
